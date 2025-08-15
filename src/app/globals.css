@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Hearts background for login page */
+.hearts-background {
+  background-image: url("/hearts.gif");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.8;
+}
+
+/* Animated Gradient Background */
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animated-gradient {
+  background: linear-gradient(-45deg, #fbc2eb, #a6c1ee, #fda4af, #fde68a);
+  background-size: 400% 400%;
+  animation: gradientBG 18s ease infinite;
+}
+
+/* Floating hearts animation */
+/* .hearts-container class is now fully defined and used in layout.js for the global effect. 
+   The styles previously here (position: absolute, width: 100%, height: 100%, overflow: hidden, z-index: 0) 
+   are either handled by the inline classes in layout.js (fixed, inset-0, z-[-1], pointer-events-none) 
+   or are not needed for the global container. Individual pages that might have used this 
+   class locally have had their hearts-container removed. */
+
+.heart {
+  position: absolute;
+  /* Vertical position is now set by inline style 'top' in layout.js */
+  width: 20px;
+  height: 20px;
+  background-color: #ff4d7c;
+  transform: rotate(45deg);
+  opacity: 0; /* Start fully transparent, animation will fade them in */
+  animation: float-heart linear infinite;
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: #ff4d7c;
+  border-radius: 50%;
+}
+
+.heart::before {
+  top: -10px;
+  left: 0;
+}
+
+.heart::after {
+  top: 0;
+  left: -10px;
+}
+
+@keyframes float-heart {
+  0% {
+    /* Start at their random initial (top, left) position, scaled down, transparent */
+    transform: rotate(45deg) translateY(0px) scale(0.6);
+    opacity: 0;
+  }
+  15% {
+    /* Fade in and start moving up */
+    opacity: 0.7;
+    transform: rotate(45deg) translateY(-20vh) scale(0.8);
+  }
+  85% {
+    /* Continue moving up, start fading slightly */
+    opacity: 0.5;
+    transform: rotate(45deg) translateY(-100vh) scale(1.1); /* Ensure it travels at least one full screen height upwards */
+  }
+  100% {
+    /* Reach well above the top, fully transparent, slightly larger */
+    transform: rotate(45deg) translateY(-125vh) scale(1.2); /* Increased upward travel */
+    opacity: 0;
+  }
+}
