@@ -5,6 +5,7 @@ import Image from "next/image";
 import MemoryGallery from "./components/MemoryGallery";
 import MemoryForm from "./components/MemoryForm";
 import Navbar from "./components/Navbar";
+import Link from "next/link";
 
 export default function Home() {
   const [showForm, setShowForm] = useState(false);
@@ -33,32 +34,40 @@ export default function Home() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-8 relative z-10 flex-grow">
         {!showForm ? (
           <>
-            <div className="mb-6 flex justify-between items-center">
-              <h2 className="text-xl font-semibold text-pink-700 dark:text-pink-500 flex items-center">
+            <div className="mb-6 flex flex-col sm:flex-row sm:justify-between items-start sm:items-center gap-3">
+              <h2 className="text-lg sm:text-xl font-semibold text-pink-700 dark:text-pink-500 flex items-center w-full sm:w-auto justify-center sm:justify-start">
                 <span className="mr-2">❤️</span>
                 Our Special Moments
                 <span className="ml-2">❤️</span>
               </h2>
-              <button
-                onClick={toggleForm}
-                className="bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white font-medium py-2 px-6 rounded-full focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-1"
-              >
-                <span className="flex items-center">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5 mr-1"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  Add New Memory
-                </span>
-              </button>
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full sm:w-auto">
+                <Link
+                  href="/restaurants"
+                  className="bg-gradient-to-r from-pink-400 to-purple-400 hover:from-pink-500 hover:to-purple-500 text-white font-medium py-2 px-4 sm:px-6 rounded-full focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-1 text-sm sm:text-base w-full sm:w-auto text-center"
+                >
+                  Restaurants
+                </Link>
+                <button
+                  onClick={toggleForm}
+                  className="bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white font-medium py-2 px-4 sm:px-6 rounded-full focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-1 text-sm sm:text-base w-full sm:w-auto"
+                >
+                  <span className="flex items-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5 mr-1"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    Add New Memory
+                  </span>
+                </button>
+              </div>
             </div>
             <MemoryGallery key={refreshGallery} />
           </>

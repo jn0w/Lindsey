@@ -8,6 +8,7 @@ const environment = {
     dbName: "ourmemories",
     collections: {
       memories: "memories",
+      restaurants: "restaurants",
     },
   },
 
