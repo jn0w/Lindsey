@@ -161,23 +161,7 @@ export default function MemoryDetail({ memoryId }) {
               </div>
             )}
 
-            {/* Action Buttons - only Edit (deletion disabled) */}
-            <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 w-full justify-center pt-2">
-              <Link
-                href={`/memories/edit/${memoryId}`}
-                className="px-4 py-2 bg-gradient-to-r from-purple-500 to-indigo-500 text-white rounded-full hover:from-purple-600 hover:to-indigo-600 focus:outline-none focus:ring-2 focus:ring-purple-500 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 text-sm font-medium flex items-center justify-center w-full sm:w-auto"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4 mr-1"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
-                </svg>
-                Edit
-              </Link>
-            </div>
+            {/* Actions intentionally omitted - memories are permanent */}
           </div>
         </div>
       </div>
