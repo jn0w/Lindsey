@@ -155,52 +155,12 @@ export async function PUT(request, { params }) {
 }
 
 // DELETE - Delete a memory by ID
-export async function DELETE(request, { params }) {
-  let client;
-  try {
-    const { id } = await params;
-
-    // Validate ID format
-    if (!ObjectId.isValid(id)) {
-      return NextResponse.json(
-        {
-          success: false,
-          message: "Invalid memory ID format",
-        },
-        { status: 400 }
-      );
-    }
-
-    const { collection, client: mongoClient } = await getCollection();
-    client = mongoClient;
-
-    const result = await collection.deleteOne({ _id: new ObjectId(id) });
-
-    if (result.deletedCount === 0) {
-      return NextResponse.json(
-        {
-          success: false,
-          message: "Memory not found",
-        },
-        { status: 404 }
-      );
-    }
-
-    return NextResponse.json({
-      success: true,
-      message: "Memory deleted successfully",
-    });
-  } catch (error) {
-    console.error("Error deleting memory:", error);
-    return NextResponse.json(
-      {
-        success: false,
-        message: "Failed to delete memory",
-        error: error.message,
-      },
-      { status: 500 }
-    );
-  } finally {
-    if (client) await client.close();
-  }
+export async function DELETE() {
+  return NextResponse.json(
+    {
+      success: false,
+      message: "Deleting memories is disabled. Memories are permanent.",
+    },
+    { status: 405 }
+  );
 }
